@@ -23,9 +23,9 @@ use App\Http\Controllers\API\BookController;
 //Route::post('login', 'API\UserController@login');
 
 
-Route::post('register', [UserController::class, 'register']);
-Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register'])->name('register');
+Route::post('login', [UserController::class, 'login'])->name('login');
 
-Route::middleware('auth:api')->group( function () {
-    Route::resource('books', BookController::class);
+Route::middleware('auth:sanctum')->group( function () {
+    Route::get('books', [BookController::class, 'index'])->name('books');
 });
